@@ -1,10 +1,16 @@
 #cloud-config
 users:
-  - name: web
-    primary_group: web
-    groups: wheel
+  - name: webuser
+    sudo: ["ALL=(ALL) NOPASSWD:ALL"]
     shell: /bin/bash
-    sudo: ['ALL=(ALL) NOPASSWD:ALL']
-    ssh-authorized-keys:
+    ssh_authorized_keys:
       - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDiTOJKJEYY593u8LuvN/tuWVfUi3YlVcfmSyeWrnc/hg5nVP5Xkif34oJEkLfjRm+Tnt1J78tVJ55LGqNkqV28/TksSLbrjZGWQg3SvkCIERfgU4+270lPgoPwDxdIHQ2uO7q3zWOpBzdHbWnHvBjsjXH+3hY+guSgtqbFQBWe4NZF4K6RW6o41IzKQmobRbxEXyfzWmm+9tGDQ+bgwSixLcBnDz8IiLB6V6k12h00X2HcqFcDTgb+xHQgpOksE5NLsuTWs3BeOX/YDp3u8KGtyoBuOoUsKtspc+9gaX8tvtEK1u9ykXLmUcf+fHWkkrRvXwR/4MFiUQy2wNRxg6y5xTsDi8SOxZ1wvfkFwW2Qs1yIl0Xdc8FjGdGnn8tKmQ+TN0ae+qku1oDSBqcLbp2tPYPibluZW3AuuWlZQHYGNJtHqleIEbSNlNAKhfx4R/nXfNo6kwdwcjgYqmLp2AVN/JtWN75eCuc+o/B1kM4uj092V38r+s+xEEJPTE5O3YW6EKWs8qjFp8+9FetLtJ05onA9nL7cuLeCPywjI8N7+cm8w+a6oFwxkvDLf7yZdWxxqOwfsKbJK6YBR0i7I4xDPQ8QT6RmmgdiXj8N8LXkOs75iUyE41f4QrcrSTyXcpIz1CPGzFUmTBZ7xG+dC1blhAXjp3xbdw112T+YfwcGtw== khush@khush-virtual-machine
+ 
+packages:
+  - nginx
+  - nmap
+
+runcmd:
+  - systemctl start nginx
+  - systemctl enable nginx
 
